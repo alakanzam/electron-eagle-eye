@@ -1,5 +1,4 @@
-/* eslint-disable */
-export default {
+module.exports = {
   displayName: 'eagle-eye',
   preset: '../../jest.preset.js',
   globals: {

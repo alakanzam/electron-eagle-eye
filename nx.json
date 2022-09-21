@@ -35,5 +35,8 @@
     ],
     "sharedGlobals": []
   },
+  "cli": {
+    "defaultCollection": "nx-electron"
+  },
   "defaultProject": "eagle-eye"
 }

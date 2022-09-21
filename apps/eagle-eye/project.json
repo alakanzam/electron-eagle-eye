@@ -1,18 +1,19 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/eagle-eye/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "executor": "nx-electron:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "target": "node",
-        "compiler": "tsc",
         "outputPath": "dist/apps/eagle-eye",
         "main": "apps/eagle-eye/src/main.ts",
         "tsConfig": "apps/eagle-eye/tsconfig.app.json",
-        "assets": ["apps/eagle-eye/src/assets"]
+        "assets": [
+          "apps/eagle-eye/src/assets"
+        ]
       },
       "configurations": {
         "production": {
@@ -29,31 +30,46 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/js:node",
+      "executor": "nx-electron:execute",
       "options": {
         "buildTarget": "eagle-eye:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "eagle-eye:build:production"
-        }
+      }
+    },
+    "package": {
+      "executor": "nx-electron:package",
+      "options": {
+        "name": "eagle-eye",
+        "outputPath": "dist/packages",
+        "prepackageOnly": true
+      }
+    },
+    "make": {
+      "executor": "nx-electron:make",
+      "options": {
+        "name": "eagle-eye",
+        "outputPath": "dist/executables"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/eagle-eye/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/eagle-eye/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/eagle-eye"],
+      "outputs": [
+        "coverage/apps/eagle-eye"
+      ],
       "options": {
-        "jestConfig": "apps/eagle-eye/jest.config.ts",
+        "jestConfig": "apps/eagle-eye/jest.config.js",
         "passWithNoTests": true
       }
     }
-  },
-  "tags": []
+  }
 }
